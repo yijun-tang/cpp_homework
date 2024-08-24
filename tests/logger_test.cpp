@@ -34,11 +34,9 @@ TEST(LoggerTest, LogFunctionTest) {
 
 TEST(LoggerTest, FlushTest) {
     clearLogFile();
-
     Logger& logger = Logger::getInstance();
     logger.log(LogLevel::INFO, "Before flush");
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     logger.flush();
     
     std::ifstream logFile(LOG_FILE_NAME);

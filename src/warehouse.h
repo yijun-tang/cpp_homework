@@ -42,6 +42,12 @@ public:
     ConstIterator cend();
 
 private:
+    /* 
+     * 5. Smart Pointer Usage
+     * 
+     * Product instances could be referenced by multiple variables, so it's 
+     * suitable to use std::shared_ptr<T>. 
+     */
     std::unordered_map<size_t, ProductPtr> products;
     std::mutex mtx;
 };

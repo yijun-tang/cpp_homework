@@ -109,6 +109,7 @@ void inventoryCheck(Warehouse<T>& warehouse, int checkInterval, int lowStockThre
 
 template void Warehouse<int>::addProduct(std::shared_ptr<Product<int>>);
 template void Warehouse<int>::removeProduct(size_t);
+template void Warehouse<int>::updateProduct(size_t, const std::string&, int, int);
 template bool Warehouse<int>::is_empty();
 template void supplierUpdate(Warehouse<int>&, size_t, int, int);
 template void inventoryCheck(Warehouse<int>&, int, int);
