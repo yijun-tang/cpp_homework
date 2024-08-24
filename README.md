@@ -1,4 +1,4 @@
-# cpp_homework
+# C++ Homework
 DexMate C++ homework for interview
 
 ## Setup
