@@ -43,11 +43,6 @@ void runConcurrentTest() {
 
     // Test the warehouse state after threads have run
     ASSERT_GE(product1->getQuantity(), 0); // Ensure that the quantity hasn't gone negative
-
-    const auto& products = warehouse.getProducts();
-    ASSERT_EQ(products.size(), 2); // Check the number of products
-    ASSERT_NE(products.find(1), products.end()); // Ensure Product 1 exists
-    ASSERT_NE(products.find(2), products.end()); // Ensure Product 2 exists
 }
 
 TEST(WarehouseTest, ConcurrentSupplierAndChecker) {

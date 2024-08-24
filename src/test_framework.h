@@ -26,18 +26,9 @@ namespace TestFramework {
 using TestFunc = std::function<void()>;
 
 template<typename T>
-void assertEqual(const T& actual, const T& expected, int line, const std::string& file) {
-    if (actual != expected) {
-        std::cerr << "Assertion failed at " << file << ":" << line << ": expected " 
-                    << expected << ", but got " << actual << std::endl;
-    }
-}
+void assertEqual(const T& actual, const T& expected, int line, const std::string& file);
 
-void assertTrue(bool condition, int line, const std::string& file) {
-    if (!condition) {
-        std::cerr << "Assertion failed at " << file << ":" << line << ": condition is false" << std::endl;
-    }
-}
+void assertTrue(bool condition, int line, const std::string& file);
 
 class TestRunner {
 public:
@@ -45,12 +36,7 @@ public:
         getInstance().tests.emplace_back(name, func);
     }
 
-    static void runTests() {
-        for (const auto& test : getInstance().tests) {
-            std::cout << "Running test: " << test.first << std::endl;
-            test.second();
-        }
-    }
+    static void runTests();
 
 private:
     std::vector<std::pair<std::string, TestFunc>> tests;

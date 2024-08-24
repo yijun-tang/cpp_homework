@@ -31,9 +31,6 @@ public:
     void setPrice(T price) { this->price = price; }
     void setQuantity(int quantity) { this->quantity.store(quantity); }
 
-    void increaseQuantity(int amount) { quantity.fetch_add(amount); }
-    void decreaseQuantity(int amount) { quantity.fetch_sub(amount); }
-
 private:
     size_t id;
     std::string name;

@@ -9,6 +9,8 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 set(SRC_FILES
     src/product.cpp
     src/logger.cpp
+    src/warehouse.cpp
+    src/test_framework.cpp
 )
 
 # Add GoogleTest
