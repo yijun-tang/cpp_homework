@@ -21,3 +21,5 @@ target_link_libraries(MultithreadedTest gtest gtest_main pthread)
 
 add_executable(LoggerTest tests/logger_test.cpp ${SRC_FILES})
 target_link_libraries(LoggerTest gtest gtest_main pthread)
+
+add_executable(TestFrameworkTest tests/test_framework_test.cpp ${SRC_FILES})
