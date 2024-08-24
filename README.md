@@ -22,5 +22,38 @@ cmake cmake --build .           # build again if source code is modified
 # running unit tests for simple unit testing framework
 ./TestFrameworkTest
 ```
+If everything goes well, the message would be something like:
+```sh
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from LoggerTest
+[ RUN      ] LoggerTest.SingletonTest
+[       OK ] LoggerTest.SingletonTest (0 ms)
+[ RUN      ] LoggerTest.LogFunctionTest
+[       OK ] LoggerTest.LogFunctionTest (0 ms)
+[ RUN      ] LoggerTest.FlushTest
+[       OK ] LoggerTest.FlushTest (0 ms)
+[ RUN      ] LoggerTest.ThreadSafetyTest
+[       OK ] LoggerTest.ThreadSafetyTest (18 ms)
+[----------] 4 tests from LoggerTest (19 ms total)
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (19 ms total)
+[  PASSED  ] 4 tests.
+
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WarehouseTest
+[ RUN      ] WarehouseTest.ConcurrentSupplierAndChecker
+...
+[       OK ] WarehouseTest.ConcurrentSupplierAndChecker (3098 ms)
+[----------] 1 test from WarehouseTest (3099 ms total)
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3099 ms total)
+[  PASSED  ] 1 test.
+
+Running test: testAddProduct
+Running test: testRemoveProduct
+Running test: testUpdateProductQuantity
+```
 
 _Note: this project doesn't provide binary to run directly, if you want to reuse some functionality of it, please import it as third party library._
