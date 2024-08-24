@@ -12,12 +12,12 @@
 #define ASSERT_TRUE(condition) \
     TestFramework::assertTrue((condition), __LINE__, __FILE__)
 
-#define TEST_CASE(name) \
-    void name(); \
-    static bool name##Registered = []() { \
+#define TEST_CASE(name)                                  \
+    void name();                                         \
+    static bool name##Registered = []() {                \
         TestFramework::TestRunner::addTest(#name, name); \
-        return true; \
-    }(); \
+        return true;                                     \
+    }();                                                 \
     void name()
 
 namespace TestFramework {
@@ -25,20 +25,21 @@ namespace TestFramework {
 // Define a type alias for test functions
 using TestFunc = std::function<void()>;
 
-template<typename T>
-void assertEqual(const T& actual, const T& expected, int line, const std::string& file);
+template <typename T>
+void assertEqual(const T& actual, const T& expected, int line,
+                 const std::string& file);
 
 void assertTrue(bool condition, int line, const std::string& file);
 
 class TestRunner {
-public:
+   public:
     static void addTest(const std::string& name, TestFunc func) {
         getInstance().tests.emplace_back(name, func);
     }
 
     static void runTests();
 
-private:
+   private:
     std::vector<std::pair<std::string, TestFunc>> tests;
 
     static TestRunner& getInstance() {
@@ -51,6 +52,6 @@ private:
     TestRunner& operator=(const TestRunner&) = delete;
 };
 
-}
+}  // namespace TestFramework
 
-#endif // TEST_FRAMEWORK_H_
+#endif  // TEST_FRAMEWORK_H_

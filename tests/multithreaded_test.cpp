@@ -1,9 +1,10 @@
-#include "gtest/gtest.h"
-#include "../src/warehouse.h"
-#include "../src/product.h"
+#include <atomic>
 #include <iostream>
 #include <thread>
-#include <atomic>
+
+#include "../src/product.h"
+#include "../src/warehouse.h"
+#include "gtest/gtest.h"
 
 void runConcurrentTest() {
     Warehouse<int> warehouse;
@@ -26,9 +27,7 @@ void runConcurrentTest() {
     }
 
     // Launch a single checker thread
-    std::thread checker([&]() {
-        inventoryCheck<int>(warehouse, 1, 40);
-    });
+    std::thread checker([&]() { inventoryCheck<int>(warehouse, 1, 40); });
 
     // Let the threads run for a while
     std::this_thread::sleep_for(std::chrono::seconds(3));
@@ -39,17 +38,17 @@ void runConcurrentTest() {
     for (auto& thread : suppliers) {
         if (thread.joinable()) thread.join();
     }
-    if (checker.joinable()) checker.detach(); // Detached to avoid blocking main thread in test
+    if (checker.joinable())
+        checker.detach();  // Detached to avoid blocking main thread in test
 
     // Test the warehouse state after threads have run
-    ASSERT_GE(product1->getQuantity(), 0); // Ensure that the quantity hasn't gone negative
+    ASSERT_GE(product1->getQuantity(),
+              0);  // Ensure that the quantity hasn't gone negative
 }
 
-TEST(WarehouseTest, ConcurrentSupplierAndChecker) {
-    runConcurrentTest();
-}
+TEST(WarehouseTest, ConcurrentSupplierAndChecker) { runConcurrentTest(); }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

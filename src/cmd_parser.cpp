@@ -1,4 +1,5 @@
 #include "cmd_parser.h"
+
 #include <iostream>
 
 // Constructor to initialize command map
@@ -18,6 +19,8 @@ void CommandParser::parse(const std::string& command) {
         it->second();
     } else {
         // Command not found
-        std::cout << "Invalid command. Type 'help' for a list of available commands." << std::endl;
+        std::cout
+            << "Invalid command. Type 'help' for a list of available commands."
+            << std::endl;
     }
 }

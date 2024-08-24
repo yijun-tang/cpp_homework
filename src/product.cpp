@@ -1,5 +1,6 @@
-#include <utility>
 #include "product.h"
+
+#include <utility>
 
 // Move constructor
 template <typename T>

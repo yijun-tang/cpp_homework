@@ -1,4 +1,5 @@
 #include "../src/test_framework.h"
+
 #include "../src/warehouse.h"
 
 TEST_CASE(testAddProduct) {

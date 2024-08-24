@@ -25,7 +25,8 @@ Logger::~Logger() {
 void Logger::log(LogLevel level, const std::string& message) {
     std::lock_guard<std::mutex> lock(mtx);
     if (logFile.is_open()) {
-        logFile << getCurrentTime() << " [" << logLevelToString(level) << "] " << message << std::endl;
+        logFile << getCurrentTime() << " [" << logLevelToString(level) << "] "
+                << message << std::endl;
     }
 }
 
@@ -51,9 +52,13 @@ std::string Logger::getCurrentTime() const {
 // Convert log level to string
 std::string Logger::logLevelToString(LogLevel level) const {
     switch (level) {
-        case LogLevel::INFO: return "INFO";
-        case LogLevel::WARNING: return "WARNING";
-        case LogLevel::ERROR: return "ERROR";
-        default: return "UNKNOWN";
+        case LogLevel::INFO:
+            return "INFO";
+        case LogLevel::WARNING:
+            return "WARNING";
+        case LogLevel::ERROR:
+            return "ERROR";
+        default:
+            return "UNKNOWN";
     }
 }

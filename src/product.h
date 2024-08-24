@@ -1,14 +1,14 @@
 #ifndef PRODUCT_H_
 #define PRODUCT_H_
 
+#include <atomic>
 #include <iostream>
 #include <mutex>
 #include <string>
-#include <atomic>
 
 template <typename T>
 class Product {
-public:
+   public:
     // Constructors
     Product(size_t id, const std::string& name, T price, int quantity)
         : id(id), name(name), price(price), quantity(quantity) {}
@@ -31,11 +31,11 @@ public:
     void setPrice(T price) { this->price = price; }
     void setQuantity(int quantity) { this->quantity.store(quantity); }
 
-private:
+   private:
     size_t id;
     std::string name;
     T price;
     std::atomic<int> quantity;
 };
 
-#endif // PRODUCT_H_
+#endif  // PRODUCT_H_

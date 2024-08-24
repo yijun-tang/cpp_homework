@@ -1,26 +1,22 @@
 #ifndef LOGGER_H_
 #define LOGGER_H_
 
-#include <string>
-#include <fstream>
-#include <mutex>
-#include <memory>
 #include <chrono>
+#include <fstream>
 #include <iomanip>
+#include <memory>
+#include <mutex>
 #include <sstream>
+#include <string>
 
 const std::string LOG_FILE_NAME = "log.txt";
 
 // Log levels enumeration
-enum class LogLevel {
-    INFO,
-    WARNING,
-    ERROR
-};
+enum class LogLevel { INFO, WARNING, ERROR };
 
 // Logger class
 class Logger {
-public:
+   public:
     // Get the singleton instance of the Logger
     static Logger& getInstance();
 
@@ -30,7 +26,7 @@ public:
     // Flush logs to the file
     void flush();
 
-private:
+   private:
     // Private constructor and destructor for Singleton
     Logger();
     ~Logger();
@@ -47,4 +43,4 @@ private:
     std::mutex mtx;
 };
 
-#endif // LOGGER_H_
+#endif  // LOGGER_H_

@@ -1,8 +1,10 @@
+#include "../src/logger.h"
+
 #include <gtest/gtest.h>
+
 #include <fstream>
 #include <sstream>
 #include <thread>
-#include "../src/logger.h"
 
 // Helper function to clear log file
 void clearLogFile() {
@@ -38,7 +40,7 @@ TEST(LoggerTest, FlushTest) {
     logger.log(LogLevel::INFO, "Before flush");
 
     logger.flush();
-    
+
     std::ifstream logFile(LOG_FILE_NAME);
     std::stringstream buffer;
     buffer << logFile.rdbuf();
@@ -54,7 +56,8 @@ TEST(LoggerTest, ThreadSafetyTest) {
     auto loggingFunction = [](int threadId) {
         Logger& logger = Logger::getInstance();
         for (int i = 0; i < 100; ++i) {
-            logger.log(LogLevel::INFO, "Thread " + std::to_string(threadId) + " log message " + std::to_string(i));
+            logger.log(LogLevel::INFO, "Thread " + std::to_string(threadId) +
+                                           " log message " + std::to_string(i));
         }
     };
 
@@ -77,13 +80,14 @@ TEST(LoggerTest, ThreadSafetyTest) {
     // Verify that the log file contains entries from all threads
     for (int i = 0; i < numThreads; ++i) {
         for (int j = 0; j < 100; ++j) {
-            std::string expectedMessage = "Thread " + std::to_string(i) + " log message " + std::to_string(j);
+            std::string expectedMessage = "Thread " + std::to_string(i) +
+                                          " log message " + std::to_string(j);
             EXPECT_NE(logContent.find(expectedMessage), std::string::npos);
         }
     }
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

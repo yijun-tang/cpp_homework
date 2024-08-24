@@ -10,4 +10,4 @@ void removeProduct();
 void updateQuantity();
 void showHelp();
 
-#endif // CMD_FUNCTIONS_H_
+#endif  // CMD_FUNCTIONS_H_
